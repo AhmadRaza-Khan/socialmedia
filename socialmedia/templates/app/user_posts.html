@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username|capfirst }} Posts{% endblock title %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="flex items-start gap-4 bg-gray-950 rounded mx-10 my-10 shadow-lg shadow-slate-500 w-fit p-5">
+    <img
+      src="{{ profile.profile_image.url }}"
+      alt=""
+      class="size-20 rounded-lg object-cover"
+    />
+  
+    <div>
+      <h3 class="text-lg/tight font-medium text-white">{{ user.first_name }} {{ user.last_name }}</h3>
+  
+      <p class="mt-0.5 text-white">
+        {{ profile.bio }}
+      </p>
+    </div>
+  </div>
+
+  </div>
+            <h3 class="text-center text-slate-200 text-4xl font-bold my-10">{{user.username|capfirst}} Posts</h3>
+            {% for post in posts %}
+            <div class="flex posts rounded-md justify-center items-center flex-col my-10 bg-gray-950 shadow shadow-slate-600 shadow-lg h-fit w-fit mx-auto p-10">
+               <div class="w-fit h-fit mx-auto my-5">
+                   <img
+                     alt=""
+                     src="{{ post.image.url }}"
+                     class="h-64 w-full object-cover sm:h-80 lg:h-96"
+                   />
+                 
+                   <h3 class="mt-4 text-lg font-bold text-slate-300 sm:text-xl">{{post.title}} </h3>
+                 
+                   <p class="mt-2 max-w-sm text-slate-200">
+                     {{post.content}}
+                   </p>
+               </div>
+           
+           
+           <div class="flex justify-center items-center gap-2 w-fit">
+             <!-- Success - Solid -->
+           
+           <span
+           class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100"
+           >
+           <svg
+           xmlns="http://www.w3.org/2000/svg"
+           class=" -ms-1 me-1.5 size-4"
+           fill="red"
+           viewBox="0 0 24 24"
+           stroke-width="1.5"
+           stroke="red"
+           >
+           <path
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+           />
+           </svg>
+           
+           <p class="liked whitespace-nowrap text-sm">{{ post.total_likes }}</p>
+           </span>
+           
+           <!-- Success - Outlined -->
+           
+           <span
+           class="inline-flex cursor-pointer items-center justify-center rounded-full border border-emerald-500 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-100"
+           >
+           
+           <p data-value="{{ post.title }}" class="like-buttonOne whitespace-nowrap text-sm">{% if post in liked %}Liked {% else %} Like {% endif %}</p>
+           </span>
+           
+           </div>
+           </div>
+            </div>
+               {% endfor %}
+           
+  {% else %}
+<a href="{% url "login" %}">Login</a>
+<a href="{% url "signup" %}">Signup</a>
+{% endif %}
+
+{% endblock content %}
