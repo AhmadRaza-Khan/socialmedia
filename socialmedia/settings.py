@@ -25,9 +25,18 @@ SECRET_KEY = 'django-insecure-2aizax50z_#3jim!ii4&(9a*1zaa#nw@h2b0o4f$e8n@k4!$$%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "socialmedia-production-c176.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://socialmedia-production-c176.up.railway.app"
+]
 
 
 # Application definition
