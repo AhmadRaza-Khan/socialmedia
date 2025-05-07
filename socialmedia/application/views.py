@@ -11,7 +11,6 @@ from django.contrib import messages
 def home(request):
     if request.user.is_authenticated:
         liked = Post.objects.filter(likes=request.user)
-        print(liked)
         posts = Post.objects.all()
         return render(request, 'home.html', {'posts': posts, 'liked': liked})
     else:

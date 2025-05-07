@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-2aizax50z_#3jim!ii4&(9a*1zaa#nw@h2b0o4f$e8n@k4!$$%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+ASGI_APPLICATION = "socialmedia.asgi.application"
 ROOT_URLCONF = 'socialmedia.urls'
 
 TEMPLATES = [
