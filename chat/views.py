@@ -35,8 +35,7 @@ def chat_room(request, room_name):
     from datetime import datetime
 
     user_last_messages.sort(
-        key=lambda x: x['last_message'].timestamp if x['last_message'] else datetime.min,
-        reverse=True
+        key=lambda x: x['last_message'].timestamp if x['last_message'] else ""
     )
 
     return render(request, 'chat.html', {
