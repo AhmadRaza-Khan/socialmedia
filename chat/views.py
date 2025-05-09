@@ -32,10 +32,10 @@ def chat_room(request, room_name):
         })
 
     # Sort user_last_messages by the timestamp of the last_message in descending order
-    from datetime import datetime
+    from datetime import datetime, timezone
 
     user_last_messages.sort(
-        key=lambda x: x['last_message'].timestamp if x['last_message'] else datetime.min,
+        key=lambda x: x['last_message'].timestamp.replace(tzinfo=timezone.utc) if x['last_message'] else datetime.min.replace(tzinfo=timezone.utc),
         reverse=True
     )
 
