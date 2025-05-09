@@ -266,7 +266,7 @@
 
       const protocol = window.location.protocol === "https:" ? "wss" : "ws";
 const chatSocket = new WebSocket(
-  `${protocol}://${window.location.host}/wss/chat/{{ room_name }}/`
+  `${protocol}://${window.location.host}/ws/chat/{{ room_name }}/`
 );
 
       chatSocket.onopen = function (e) {
