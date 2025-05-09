@@ -263,9 +263,11 @@
       const roomName = JSON.parse(
         document.getElementById("room_slug").textContent
       );
-      const chatSocket = new WebSocket(
-        "wss://" + window.location.host + "/wss/chat/{{ room_name }}/"
-      );
+
+      const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+const chatSocket = new WebSocket(
+  `${protocol}://${window.location.host}/ws/chat/{{ room_name }}/`
+);
 
       chatSocket.onopen = function (e) {
         console.log("The connection was set up successfully!");
